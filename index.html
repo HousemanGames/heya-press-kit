@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heya! Sumo Manager — Press Kit</title>
+<meta name="description" content="Press kit for Heya! Sumo Manager, a sumo stable management game by Houseman Games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Palette is the game's own, from scripts/ui/sumo_theme_constants.gd. */
+  :root {
+    color-scheme: dark;
+    --bg: #2D1B2D;
+    --bg-muted: #251525;
+    --panel: #3D2B3D;
+    --pink: #E8A0BF;
+    --pink-deep: #C46B94;
+    --header: #FFB7D5;
+    --gold: #D4A853;
+    --gold-bright: #EBD09B;
+    --text: #FFF8EC;
+    --muted: #B8A898;
+    --todo-bg: #E8B44D;
+    --todo-text: #2D1B2D;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, "Noto Sans JP", system-ui, sans-serif;
+  }
+  a { color: var(--header); }
+  a:hover { color: var(--gold-bright); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  header.hero {
+    background: radial-gradient(ellipse at 50% 30%, #4A2040 0%, var(--bg) 70%);
+    border-bottom: 2px solid var(--gold);
+    text-align: center;
+    padding: 24px 16px 32px;
+  }
+  /* The logo file is 16:9 with the mark in the middle ~45%, so it is drawn wide and cropped. */
+  header.hero img { width: min(860px, 140%); height: auto; display: block; margin: -16px 50% 0;
+                    transform: translateX(-50%); }
+  header.hero { overflow: hidden; }
+  header.hero p.tagline { font-size: 1.2rem; color: var(--gold-bright); margin: 4px 0 20px; }
+  .cta { display: inline-block; padding: 10px 20px; border-radius: 6px; font-weight: 700;
+         text-decoration: none; background: linear-gradient(var(--pink), #D4789C);
+         color: var(--bg); border: 1px solid var(--gold); }
+  .cta:hover { color: var(--bg); filter: brightness(1.08); }
+
+  .layout { display: grid; grid-template-columns: 300px 1fr; gap: 32px; padding: 32px 0 48px; }
+  @media (max-width: 820px) { .layout { grid-template-columns: 1fr; } }
+
+  aside .panel { position: sticky; top: 16px; }
+  .panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 8px; padding: 20px; }
+  .panel h2 { margin-top: 0; }
+  dl.facts { margin: 0; }
+  dl.facts dt { color: var(--gold); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+                letter-spacing: 0.06em; margin-top: 14px; }
+  dl.facts dt:first-child { margin-top: 0; }
+  dl.facts dd { margin: 2px 0 0; }
+
+  nav.toc { margin-top: 20px; font-size: 0.95rem; }
+  nav.toc a { display: block; padding: 2px 0; text-decoration: none; }
+
+  main section { margin-bottom: 44px; }
+  h2 { color: var(--header); font-size: 1.5rem; margin: 0 0 12px; padding-bottom: 6px;
+       border-bottom: 1px solid rgba(212, 168, 83, 0.4); }
+  h3 { color: var(--gold-bright); font-size: 1.05rem; margin: 20px 0 6px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 1.1rem; }
+  ul.features { padding-left: 20px; margin: 0; }
+  ul.features li { margin-bottom: 8px; }
+  ul.features strong { color: var(--gold-bright); }
+  blockquote.copy { margin: 0 0 14px; padding: 12px 16px; background: var(--bg-muted);
+                    border-left: 3px solid var(--gold); border-radius: 4px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: var(--bg-muted); border: 1px solid rgba(212, 168, 83, 0.5);
+           border-radius: 6px; overflow: hidden; }
+  figure img, figure video { display: block; width: 100%; height: auto; }
+  figure.logo img { background: repeating-conic-gradient(#ffffff 0 25%, #e9e4e8 0 50%) 0 0 / 20px 20px; }
+  figcaption { padding: 8px 12px; font-size: 0.9rem; color: var(--muted); }
+  figcaption a { font-weight: 500; }
+  .slot { display: flex; align-items: center; justify-content: center; text-align: center;
+          aspect-ratio: 16 / 9; padding: 16px; border: 2px dashed var(--todo-bg); border-radius: 6px;
+          color: var(--todo-bg); font-size: 0.9rem; }
+
+  mark.todo { background: var(--todo-bg); color: var(--todo-text); padding: 0 4px; border-radius: 3px;
+              font-weight: 500; }
+
+  table.credits { border-collapse: collapse; width: 100%; }
+  table.credits td { padding: 6px 0; vertical-align: top; border-bottom: 1px solid rgba(212, 168, 83, 0.2); }
+  table.credits td:first-child { color: var(--gold); width: 38%; padding-right: 12px; }
+
+  footer { border-top: 1px solid var(--gold); padding: 20px 16px 32px; color: var(--muted);
+           font-size: 0.85rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="images/logo/heya-sumo-manager-logo.png" alt="Heya! Sumo Manager logo" width="1920" height="1080">
+  <p class="tagline">Run a sumo stable, from your first recruit to the top of the banzuke.</p>
+  <a class="cta" href="https://store.steampowered.com/app/4885580/">Play the free demo on Steam</a>
+</header>
+
+<div class="wrap layout">
+
+  <aside>
+    <div class="panel">
+      <h2>Factsheet</h2>
+      <dl class="facts">
+        <dt>Developer</dt>
+        <dd>Houseman Games</dd>
+        <dt>Based in</dt>
+        <dd><mark class="todo">City, Country</mark></dd>
+        <dt>Release date</dt>
+        <dd><mark class="todo">TBA / season + year</mark><br>Free demo out now</dd>
+        <dt>Platform</dt>
+        <dd>Windows PC (Steam)</dd>
+        <dt>Price</dt>
+        <dd><mark class="todo">TBA</mark></dd>
+        <dt>Genre</dt>
+        <dd>Sports management sim</dd>
+        <dt>Language</dt>
+        <dd>English</dd>
+        <dt>Engine</dt>
+        <dd>Godot 4</dd>
+        <dt>Steam</dt>
+        <dd><a href="https://store.steampowered.com/app/4885580/">store.steampowered.com/app/4885580</a></dd>
+        <dt>Website</dt>
+        <dd><mark class="todo">yoursite.com</mark></dd>
+        <dt>Social</dt>
+        <dd><mark class="todo">Bluesky / X handles</mark></dd>
+        <dt>Press contact</dt>
+        <dd><mark class="todo">press@yoursite.com</mark></dd>
+      </dl>
+      <nav class="toc" aria-label="Sections">
+        <a href="#description">Description</a>
+        <a href="#features">Features</a>
+        <a href="#history">History</a>
+        <a href="#videos">Videos</a>
+        <a href="#images">Images</a>
+        <a href="#logo">Logo &amp; icon</a>
+        <a href="#credits">Credits</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="description">
+      <h2>Description</h2>
+      <p class="lede">
+        <strong>Heya! Sumo Manager</strong> is a management game about running a sumo stable, in the
+        tradition of long-form sports management sims.
+      </p>
+      <p>
+        You are the new oyakata. The old master has retired, his staff have moved on, and what is left
+        is an aging Juryo wrestler, four young hopefuls and a heya that still has to pay its bills.
+        Every day you decide how your rikishi train and how hard, what they eat, who you hire, what you
+        build, which boys you try to recruit, and how you keep the supporters who fund you happy.
+      </p>
+      <p>
+        Then the basho comes round. Six tournaments a year, fifteen days each, and after every one the
+        banzuke is rebuilt from the results. A winning record moves a man up; a losing one sends him
+        down. Every bout is settled by a rules engine that weighs strength, technique, speed, weight,
+        fighting style and the plan you gave him, and you can go down to the dohyo and watch any bout
+        fought out in 3D.
+      </p>
+      <p>
+        The rest of the sumo world doesn't wait for you. Forty rival stables chase the same recruits,
+        wrestlers get hurt, slump, peak and retire, and the news feed and history book keep track of who
+        is rising and which records are under threat.
+      </p>
+
+      <h3>Short description (for listings)</h3>
+      <blockquote class="copy">
+        Heya! Sumo Manager is a sumo stable management sim. Take over a heya whose old master has retired,
+        train and feed your rikishi, keep the supporters paying, and climb the banzuke one fifteen-day
+        basho at a time.
+      </blockquote>
+    </section>
+
+    <section id="features">
+      <h2>Features</h2>
+      <ul class="features">
+        <li><strong>Run the whole heya.</strong> Training, diet, staff, facilities, scouting, supporters
+          and money, each with its own screen and its own trade-offs.</li>
+        <li><strong>The real sumo year.</strong> Six honbasho, six divisions from Jonokuchi to Makuuchi,
+          and a banzuke rebuilt after every tournament from what everyone did in it.</li>
+        <li><strong>Every official kimarite.</strong> All 82 winning techniques, plus the rare
+          non-technique finishes.</li>
+        <li><strong>Watch any bout in 3D.</strong> Procedurally animated wrestlers, pre-bout rituals
+          including the salt throw, and over 390 lines of commentary.</li>
+        <li><strong>A world that moves without you.</strong> 40 rival stables, more than 160 events and
+          storylines, 32 kinds of injury, a daily news feed and a record book of champions.</li>
+        <li><strong>Wrestlers from around the sumo world.</strong> Japan, Mongolia, Hawaii, Georgia,
+          Brazil, Bulgaria, Estonia, Kazakhstan and Ukraine.</li>
+        <li><strong>Sumo on its own terms.</strong> Real terminology throughout, with an in-game glossary
+          for newcomers.</li>
+        <li><strong>Free demo.</strong> Play your first four basho on Steam.</li>
+      </ul>
+    </section>
+
+    <section id="history">
+      <h2>History</h2>
+      <p>
+        Development started in late 2025. The game is built in Godot by Houseman Games, a solo developer.
+        A free demo covering the first four basho of a career launched on Steam in October 2026, and it
+        will be featured in Steam Next Fest in October 2026.
+      </p>
+      <p><mark class="todo">A paragraph in your own words: why sumo, why a management game, and what you
+        want players to feel.</mark></p>
+    </section>
+
+    <section id="videos">
+      <h2>Videos</h2>
+      <figure style="margin-bottom: 16px;">
+        <video src="video/demo-release-trailer.mp4" controls playsinline preload="metadata"
+               poster="images/screenshots/arena.png"></video>
+        <figcaption>Demo release trailer, 1:40, 1080p.
+          <a href="video/demo-release-trailer.mp4" download>Download MP4 (98 MB)</a>
+          · <mark class="todo">YouTube link</mark></figcaption>
+      </figure>
+      <div class="grid">
+        <figure>
+          <video src="video/get-these-hands.mp4" controls muted loop playsinline preload="metadata"
+                 poster="images/screenshots/shikiri-crouch.png"></video>
+          <figcaption>Pre-bout ritual and tachiai, in game.
+            <a href="video/get-these-hands.mp4" download>MP4</a> ·
+            <a href="video/get-these-hands-720.gif" download>GIF (720p)</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="images">
+      <h2>Images</h2>
+      <p>All images are 1920×1080 captures from the game. Click for full size.</p>
+      <div class="grid">
+        <figure>
+          <a href="images/screenshots/arena.png"><img src="images/screenshots/arena.png"
+             alt="The empty dohyo in a packed arena" loading="lazy" width="1920" height="1080"></a>
+          <figcaption>The arena before the day's bouts.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/screenshots/shikiri-crouch.png"><img src="images/screenshots/shikiri-crouch.png"
+             alt="A rikishi crouched at the starting lines, facing the camera" loading="lazy" width="1920" height="1080"></a>
+          <figcaption>Crouched at the shikiri-sen, seconds before the tachiai.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/screenshots/salt-throw.png"><img src="images/screenshots/salt-throw.png"
+             alt="A rikishi raising a fist of salt before the bout" loading="lazy" width="1920" height="1080"></a>
+          <figcaption>The salt throw.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/screenshots/fists-at-the-line.png"><img src="images/screenshots/fists-at-the-line.png"
+             alt="Close-up of a rikishi's fists touching down at the starting line" loading="lazy" width="1920" height="1080"></a>
+          <figcaption>Fists down at the line.</figcaption>
+        </figure>
+        <div class="slot">Management screenshots: roster, wrestler page, training, banzuke, basho day</div>
+      </div>
+    </section>
+
+    <section id="logo">
+      <h2>Logo &amp; icon</h2>
+      <div class="grid">
+        <figure class="logo">
+          <a href="images/logo/heya-sumo-manager-logo.png"><img src="images/logo/heya-sumo-manager-logo.png"
+             alt="Heya! Sumo Manager logo" loading="lazy" width="1920" height="1080"></a>
+          <figcaption>Logo, transparent PNG, 1920×1080.
+            <a href="images/logo/heya-sumo-manager-logo.png" download>Download</a></figcaption>
+        </figure>
+        <figure class="logo">
+          <a href="images/logo/heya-sumo-manager-icon-512.png"><img src="images/logo/heya-sumo-manager-icon-512.png"
+             alt="Heya! Sumo Manager icon" loading="lazy" width="512" height="512"
+             style="max-width: 60%; margin: 0 auto;"></a>
+          <figcaption>Icon, PNG, 512×512.
+            <a href="images/logo/heya-sumo-manager-icon-512.png" download>Download</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="credits">
+      <h2>Credits</h2>
+      <table class="credits">
+        <tr><td>Design, code and art</td><td>Houseman Games <mark class="todo">your name, if you want it public</mark></td></tr>
+        <tr><td>Playtesters</td><td>Justin House, Tom Payne, Samuel Clark, Lewis Jones, Jody Ayers</td></tr>
+        <tr><td>Music</td><td>“Amenoshita3” by PeriTune (CC BY 4.0)</td></tr>
+      </table>
+      <p style="margin-top: 14px; color: var(--muted); font-size: 0.9rem;">
+        The full list of third-party assets and licences is on the in-game Credits screen.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For press enquiries, review keys and interviews: <mark class="todo">press@yoursite.com</mark></p>
+      <p>Steam: <a href="https://store.steampowered.com/app/4885580/">wishlist and play the demo</a> ·
+         <a href="https://steamcommunity.com/app/4885580/discussions/">community discussions</a></p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Heya! Sumo Manager is a work of fiction. Its wrestlers, stables and events are invented.
+  <br>Screenshots and logos may be used for coverage of the game.
+</footer>
+
+</body>
+</html>
